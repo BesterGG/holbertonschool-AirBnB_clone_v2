@@ -22,7 +22,7 @@ def states_id(id=None):
     cityst = storage.all(City)
     name = "State.{}".format(id)
     nf = 0
-    
+
     if name in st.keys():
         if id is not None:
             for state in st.values():
@@ -30,7 +30,11 @@ def states_id(id=None):
                     st = state
     else:
         nf = 1
-    return render_template('9-states.html', states=st, cityst=cityst, id=id, nf=nf)
+    return render_template('9-states.html',
+                           states=st,
+                           cityst=cityst,
+                           id=id,
+                           nf=nf)
 
 
 if __name__ == '__main__':
