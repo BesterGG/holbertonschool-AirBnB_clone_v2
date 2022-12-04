@@ -24,6 +24,8 @@ def states_id(id=None):
         for state in st.values():
             if state['id'] == id:
                 st = state
+            else:
+                st = 1
     return render_template('9-states.html', states=st, cityst=cityst, id=id)
 
 
