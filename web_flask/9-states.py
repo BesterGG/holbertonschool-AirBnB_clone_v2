@@ -20,13 +20,17 @@ def teardown(exit):
 def states_id(id=None):
     st = storage.all(State)
     cityst = storage.all(City)
-    if id is not None:
-        for state in st.values():
-            if state['id'] == id:
-                st = state
-            else:
-                st = 1
-    return render_template('9-states.html', states=st, cityst=cityst, id=id)
+    name = "State.{}".format(id)
+    nf = 0
+    
+    if name in st.keys():
+        if id is not None:
+            for state in st.values():
+                if state['id'] == id:
+                    st = state
+    else:
+        nf = 1
+    return render_template('9-states.html', states=st, cityst=cityst, id=id, nf=nf)
 
 
 if __name__ == '__main__':
