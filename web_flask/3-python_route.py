@@ -1,32 +1,35 @@
 #!/usr/bin/python3
-""" Module 3-hbnb_route """
+""" C_route.py Task 2 """
 
 from flask import Flask
-from markupsafe import escape
 
 app = Flask(__name__)
 
 
 @app.route("/", strict_slashes=False)
 def index():
+    """Say Hello HBNB!"""
     return "Hello HBNB!"
 
 
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
+    """Say HBNB"""
     return "HBNB"
 
 
 @app.route("/c/<text>", strict_slashes=False)
 def c(text):
-    return "C {}".format(escape(text.replace("_", " ")))
+    """Return URL Route with variable"""
+    text = text.replace("_", " ")
+    return "C {}".format(text)
 
 
-@app.route("/python/", defaults={"text": "is cool"})
-@app.route("/python/<text>")
-def python(text):
-    return "Python {}".format(escape(text.replace("_", " ")))
+@app.route("/python", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def pytn(text='is cool'):
+    text = text.replace("_", " ")
+    return "Python {}".format(text)
 
-
-if __name__ == "__main__":
-    app.run(port=5000, host="0.0.0.0")
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
